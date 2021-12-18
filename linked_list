@@ -1,0 +1,69 @@
+"""Create linked lists class."""
+
+
+class Node:
+
+    def __init__(self, data):
+        # Initialise data
+        self.data = data
+        self.next = None
+
+
+class LinkedList:
+    """ Example Linked List:
+
+    (HEAD) Node(1) --> Node(2) --> Node(3) --> NONE
+
+    """
+
+    def __init__(self):
+        # Initialise data
+        self.head = None
+
+    def insert_at_beginning(self, data):
+        """ Example:
+
+            (HEAD) Node(2) --> Node(3) --> NONE
+
+            After inserting 1 at the beginning:
+        """
+        # Create Node 1
+        beginning_node = Node(data)
+        # 1 --> (HEAD) 2 --> 3 --> NULL
+        beginning_node.next = self.head
+        # (HEAD) 1 --> 2 --> 3 --> NULL
+        self.head = beginning_node
+
+    def insert_at_end(self, data):
+        """ Example:
+
+            (HEAD) Node(2) --> Node(3) --> NONE
+
+            After inserting 4 at the end:
+        """
+        # Create Node(4)
+        end_node = Node(data)
+        # If linked list is empty
+        if self.head is None:
+            self.head = end_node
+            return
+        # (HEAD) Node(2) --> Node(3) --> NONE
+        temp = self.head
+        while temp.next:
+            temp = temp.next
+        # (HEAD) Node(2) --> Node(3) --> Node(4) --> None
+        temp.next = end_node
+
+    def print_linked_list(self):
+        temp = self.head
+        while temp is not None:
+            print(str(temp.data) + "-->", end="")
+            temp = temp.next
+        print("NONE", end="")
+
+
+a = LinkedList()
+a.insert_at_beginning(3)
+a.insert_at_beginning(2)
+a.insert_at_end(4)
+a.print_linked_list()
